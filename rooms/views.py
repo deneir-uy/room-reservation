@@ -1,7 +1,18 @@
-from django.http import HttpResponse
+from rest_framework import generics
+from .models import Room, Reservation, User
+from .serializers import RoomSerializer, ReservationSerializer
 
-def index(request):
-    return HttpResponse("Testing rooms homepage")
 
-def detail(request, room_id):
-    return HttpResponse("Details for Room id: " + str(room_id))
+class RoomList(generics.ListAPIView):
+    queryset = Room.objects.all()
+    serializer_class = RoomSerializer
+
+
+class RoomDetail(generics.RetrieveUpdateAPIView):
+    queryset = Room.objects.all()
+    serializer_class = RoomSerializer
+
+
+class ReservationCreate(generics.CreateAPIView):
+    queryset = Reservation.objects.all()
+    serializer_class = ReservationSerializer
