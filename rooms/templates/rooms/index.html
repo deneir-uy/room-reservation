@@ -1,0 +1,10 @@
+{% if all_rooms %}
+    Available rooms
+    <ul>
+        {% for room in all_rooms %}
+            <li><a href="{% url 'rooms:detail' room.id %}">Room no.: {{ room.room_number }} <br> Bed(s): {{ room.beds }} <br> Price: {{ room.price }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    No rooms available
+{% endif %}

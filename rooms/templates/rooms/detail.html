@@ -1,0 +1,22 @@
+Room no.: {{ room_number }} <br>
+Beds: {{ beds }} <br>
+Price: {{ price }}
+
+{% if error_message %}
+    {{ error_message }}
+{% endif %}
+
+<form action="{% url 'rooms:reserve' room_id %}" method="post">
+    {% csrf_token %}
+    <input type="date" id="date_checkin" name="date_checkin" />
+    <label for="date_checkin">
+        Check-in date
+    </label>
+
+    <input type="date" id="date_checkout" name="date_checkout" />
+    <label for="date_checkout">
+        Check-out date
+    </label>
+
+    <input type="submit" value="Reserve">
+</form>
