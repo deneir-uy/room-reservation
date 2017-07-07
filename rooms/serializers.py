@@ -9,7 +9,8 @@ class RoomSerializer(serializers.ModelSerializer):
 
 
 class ReservationSerializer(serializers.ModelSerializer):
-    user = serializers.PrimaryKeyRelatedField(read_only=True, default=serializers.CurrentUserDefault())
+    user = serializers.PrimaryKeyRelatedField(read_only=True, default=User.objects.get(pk=1))
+    room = serializers.PrimaryKeyRelatedField(read_only=True, default=serializers.ReadOnlyField(source='pk'))
 
     class Meta:
         model = Reservation

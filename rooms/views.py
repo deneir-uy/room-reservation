@@ -14,5 +14,8 @@ class RoomDetail(generics.RetrieveUpdateAPIView):
 
 
 class ReservationCreate(generics.CreateAPIView):
-    queryset = Reservation.objects.all()
+    def perform_create(self, serializer):
+        serializer.save(user=User.objects.get(pk=self.request.user.id), room=Room.objects.get(pk=self.kwargs['pk']))
+
+    queryset = Room.objects.all()
     serializer_class = ReservationSerializer
