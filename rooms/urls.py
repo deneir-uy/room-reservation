@@ -1,10 +1,21 @@
 from django.conf.urls import url
-from . import views
+from rest_framework.urlpatterns import format_suffix_patterns
+from rooms import views
+
+
+app_name = 'rooms'
+
 
 urlpatterns = [
-    # /rooms
-    url(r'^$', views.index, name='index'),
+    # /rooms/
+    url(r'^$', views.RoomList.as_view(), name='index'),
 
-    # /rooms/id
-    url(r'^(?P<room_id>[0-9]+)/$', views.detail, name='detail'),
+    # /rooms/<room_id>/
+    url(r'^(?P<pk>[0-9]+)/$', views.RoomDetail.as_view(), name='detail'),
+
+    # /rooms/<room_id>/reserve/
+    url(r'^(?P<pk>[0-9]+)/reserve/$', views.ReservationCreate.as_view(), name='reserve'),
 ]
+
+
+urlpatterns = format_suffix_patterns(urlpatterns)
