@@ -1,0 +1,4 @@
+rooms/__pycache__
+room/migrations/__pycache__
+reservation/__pycache__
+/db.sqlite3
