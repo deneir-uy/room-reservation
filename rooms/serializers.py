@@ -1,17 +1,18 @@
 from rest_framework import serializers
-from .models import Room, Reservation, User
+from .models import Room, Reservation
+from django.contrib.auth.models import User
 
 
 class RoomSerializer(serializers.ModelSerializer):
     class Meta:
         model = Room
-        fields = '__all__'
+        fields = ('beds', 'price')
 
 
 class ReservationSerializer(serializers.ModelSerializer):
-    user = serializers.PrimaryKeyRelatedField(read_only=True, default=User.objects.get(pk=1))
+    user = serializers.PrimaryKeyRelatedField(read_only=True, default=serializers.ReadOnlyField(source='pk'))
     room = serializers.PrimaryKeyRelatedField(read_only=True, default=serializers.ReadOnlyField(source='pk'))
 
     class Meta:
         model = Reservation
-        fields = '__all__'
+        fields = ('room', 'user')
