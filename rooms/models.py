@@ -1,20 +1,13 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Room(models.Model):
     beds = models.IntegerField()
-    room_number = models.IntegerField()
-    price = models.IntegerField()
+    price = models.DecimalField(decimal_places=2, max_digits=7)
 
     def __str__(self):
-        return "{}: {}".format(self.id, self.room_number)
-
-
-class User(models.Model):
-    username = models.CharField(max_length=20)
-
-    def __str__(self):
-        return self.username
+        return "{}".format(self.id)
 
 
 class Reservation(models.Model):
@@ -22,4 +15,4 @@ class Reservation(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return "{}: {}".format(self.room.id, self.room.room_number)
+        return "{}".format(self.room.id)
