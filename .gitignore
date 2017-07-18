@@ -1,6 +1,6 @@
 rooms/__pycache__/
 rooms/migrations/__pycache__/
-reservation/__pycache__
+reservation/__pycache__/
 reservations/__pycache__/
 reservations/migrations/__pycache__/
 .idea/
